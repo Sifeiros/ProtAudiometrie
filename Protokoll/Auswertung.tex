@@ -1,0 +1,96 @@
+\section{Auswertung der Audiogramme}
+
+Die Auswertung und die Darstellung der durchgeführten Audiogramme erfolgt mit \texttt{Python} und den Paketen \texttt{Numpy, Scipy} und \texttt{Matplotlib}.
+
+\subsection{Analoges Audiogramm}
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.85\textwidth]{../Bilder/man_audio1.png}
+	\caption{Analoge Audiogramme der drei Probanden. }
+	\label{fig:man_audio1}
+\end{figure}
+
+In Abb. \ref{fig:man_audio1} sind die aufgenommenen Audiogramme der drei Probanden dargestellt. Die Genauigkeit der Werte lässt sich hierbei auf $\pm \SI{2,5}{dB-HL}$ abschätzen, da das Gerät nur eine Lautstärke-Variation in $\SI{5}{dB-HL}$-Schritten zulässt. Man kann erkennen, dass alle drei Probanden über den gesamten Frequenzbereich im normalen Bereich liegen. Proband 1 zeigt über den gesamten getesteten Frequenzbereich relativ konstant im Bereich um $\SI{10}{dB-HL}$ und damit etwas unter dem Durchschnitt. Proband 2 hingegen liegt beim linken Ohr auf einem großen Frequenzbereich unter $\SI{0}{dB-HL}$ und damit besser als der Durchschnitt. Auf dem rechten Ohr ist die Tonwahrnehmung über fast den gesamten Frequenzbereich schlechter. Dies könnte dadurch zu Stande gekommen sein, dass die verwendeten Kopfhörer scheinbar einen Defekt am rechten Hörer haben, wie sich im dritten Versuchsteil herausgestellt hat. Dagegen spricht allerdings, dass sich diese Systematik nicht so stark bei den anderen beiden Probanden feststellen lässt. Zusammenfassend lässt sich sagen, dass Proband 2 das beste Gehör hat und alle Probanden eine gesunde Tonwahrnehmung im getesteten Frequenzbereich haben.
+
+\subsection{Digitales Audiogramm}
+
+\begin{figure}[h]
+	\centering
+		\includegraphics[width=0.85\textwidth]{../Bilder/man_audio_knochen.png}
+	\caption{Digital aufgezeichnete Audiogramme für Luftleitung und Knochenleitung}
+	\label{fig:man_audio_knochen}
+\end{figure}
+
+In Abb. \ref{fig:man_audio_knochen} sind die automatisch aufgenommenen Audiogramme für das rechte und linke Ohr und die manuell aufgenommenen Audiogramme der Knochenleitung von Proband 3 dargsetellt. Die automatische Aufnahme der Audiogramme der Luftleitung erfolgt nach dem Hughson-Westlake Test. Hierbei wird die Lautstärke der Testtöne mehrmals bei einer fixen Frequenz variiert, um eine höhere Sicherheit bei der Bestimmung der Hörschwelle des Probanden zu erreichen. Obwohl auch dieses Gerät nur eine Lautstärke-Variation von $\SI{5}{dB-HL}$ ermöglicht, lässt sich eine Diskrepanz zwischen dem im ersten Versuchsteil aufgenommenen Audiogramm und dem digital aufgenommenen Audiogramm erkennen. Proband 3 zeigt in dem getesteten Frequenzbereich keinen signifikanten Unterschied zwischen linkem und rechtem Ohr und die Werte für die Hörschwelle liegen näher an der Normschwelle von $\SI{0}{dB-HL}$. Nur im hochfrequenten Bereich gibt es eine leichte Abweichung nach oben. \\
+
+\subsubsection{Knochenleitung}
+
+Bei der Bestimmung der Knochenleitung ist anzumerken, dass das Gerät eine minimale Lautstärke-Einstellung von $\SI{-10}{dB-HL}$ ermöglicht. Dementsprechend kann für das rechte Ohr auf dem gesamten Frequenzbereich nur eine obere Grenze der Hörschwelle angegeben werden. Lediglich bei $\SI{2}{kHz}$ und $\SI{3}{kHz}$ beim Audiogramm des linken Ohres musste die Lautstärke erhöht werden, damit der Proband den Ton wahrnehmen konnte. Ebenfalls ist anzumerken, dass die maximal einzustellende Tonfrequenz beim Knochenleitungsaudiogramm $\SI{6}{kHz}$ ist. 
+
+
+\subsection{Ausführliches Audiogramm}
+
+Zur Aufnahme des detaillierten Audiogramms von Proband 2 wird ein Frequenzgenerator benutzt, der ein Sinus-Signal mit variabler Spannungsamplitude ausgibt. Dieser Generator wird über ein Mischpult an die im ersten Versuchsteil verwendeten Kopfhörer angeschlossen. Um ein aussagekräftiges Audiogramm aufzunehmen, muss zunächst das vom Frequenzgenerator ausgegebene Signal in ein auf die Schallintensität bezogenes Signal umgerechnet werden. Der Frequenzgenerator gibt die Signalintensität in der Einheit $\mbox{dB V}$ aus. Es ist anzumerken, dass im Gegensatz zur Konvention, $\SI{20}{dB-V}$ einer Verdopplung der Signalintensität am Frequenzgenerator entspricht. Dementsprechend muss zunächst, um die übliche Skalierung der Schallintensität zu erreichen, der Signalwert halbiert werden. 
+Es wird davon ausgegangen, dass das Headset eine lineare Übersetzung von eingehendem Spannungssignal in ausgehendes Schallsignal unabhängig von der anregenden Frequenz vollbringt. Für diesen Fall erfolgt die Umrechnung durch einen konstanten Offset. Diesen Offset erhält man durch den Vergleich des detaillierten Audiogramms mit dem im ersten Versuchsteil aufgenommenen Audiogramms. Zur Ermittlung des Offsets wird der Referenzwert bei $\SI{1}{kHz}$ verwendet, da für diese Frequenz ebenfalls der Wert in $\mbox{dB-SPL}$ dem Wert in $\mbox{dB-HL}$ entspricht. Es wird der Wert des linken Ohres von Proband 2 im ersten Versuch als Offset $c_{Off}$ zwischen $\mbox{dB-SPL}$ und $\mbox{dB-V}$ angenommen. 
+%
+\begin{equation}
+		I[\mbox{dB-SPL}] = I[\mbox{dB-V}] +c_{off}  \quad \mbox{ mit } c_{off} = \SI{34}{dB}
+		\label{eq:SPL_offset}
+\end{equation}
+
+Dieser Offset wird auf die $\mbox{dB-V}$ Kurve addiert, um die $\mbox{dB-SPL}$ Kurve zu erhalten. \\
+
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=1.00\textwidth]{../Bilder/isophonie_kurve.png}
+	\caption{Isophonie Kurve für die Hörschwelle. Daten entnommen aus ISO 226:2003}
+	\label{fig:isophonie_kurve}
+\end{figure}
+
+
+
+Um aus dieser Kurve das Audiogramm in der Einheit $\mbox{dB-HL}$ zu erhalten muss die Kurve noch auf die Empfindlichkeit des menschlichen Gehörs normiert werden. Für diese Normierung wird die Isophonie-Kurve der Hörschwelle aus der ISO-Norm ISO 226:2003(Abb. \ref{fig:isophonie_kurve}) verwendet. 
+Die Punktdichte dieser Kurve ist zu niedrig, um für alle im Audiogramm getesteten Frequenzen einen eigenen Anpassungswert zu liefern. Um dennoch eine Umrechnung zwischen $\mbox{dB-SPL}$ in $\mbox{dB-HL}$ zu ermöglichen, wird zwischen den Werten der Isophonie-Kurve interpoliert. Es wird eine im Logarithmus der Frequenz lineare Interpolation verwendet, sodass sich für eine Frequenz $f_x$, die sich zwischen zwei Frequenzpunkten $f_i$ und $f_{i+1}$ befindet, eine Korrektur $\Delta I_{HL}(f_x)$ ergibt:
+
+\begin{align*}
+	\Delta I_{HL}(f_x) &= m \cdot \ln{f_x} + n \\
+	\mbox{mit}\quad m &= \frac{\Delta I_{HL}(f_{i+1})-\Delta I_{HL}(f_{i})}{\ln{f_{i+1}} - \ln{f_{i}}} \\
+	\mbox{und}\quad n &= \Delta I_{HL}(f_{i}) - m\cdot \ln{f_i}
+\end{align*}
+
+Es ergibt sich also insgesamt für das Audiogramm in Einheiten von $\mbox{dB-HL}$:
+
+\begin{equation}
+	I[\mbox{dB-HL}](f_x) = I[\mbox{dB-V}](f_x) + \Delta I_{HL}(f_x) + c_{off} 
+\label{eq:umrechnung_V-HL}
+\end{equation}
+
+\begin{figure}
+	\centering
+		\includegraphics[width=1.\textwidth]{../Bilder/detail_audio.png}
+	\caption{Detaillierte Auflösung der Hörschwelle von Proband 2 in Abhängigkeit der Tonfrequenz in verschiedenen Einheitendarstellungen. Gezeigt sind zunächst die Signaldaten des Frequenzgenerators (in Einheiten von [dB-V], $\SI{10}{dB-V} \hat{=} \mbox{Signalverdoppelung}$) und darunter die Signaldaten umgewandelt in [dB-SPL] und [dB-HL] (nach Eq. \ref{eq:umrechnung_V-HL}) }
+	\label{fig:detail_audio}
+\end{figure}
+
+
+Das Ergebnis dieser Umwandlung ist in Abb. \ref{fig:detail_audio} zu sehen. Man kann erkennen, dass über einen breiten Frequenzbereich zwischen ca. $\SI{400}{Hz} < f < \SI{6}{kHz}$, die Hörschwelle nahezu konstant bei $\SI{0}{dB-HL}$ liegt. Zwischen $\SI{2}{kHz}$ und $\SI{4}{kHz}$ sinkt die Hörschwelle sogar auf $\SI{-10}{dB-HL}$ ab. Dies stimmt für das linke Ohr mit den Ergebnissen des Audiogramms aus dem ersten Versuchsteil überein. Es lässt sich allerdings keine systematische Abweichung zwischen linkem und rechtem Ohr erkennen, was für einen Defekt im rechten Kopfhörer sprechen würde, da in diesem Versuch für beide Ohren der linke Kopfhörer verwendet wurde. 
+In den Frequenzbereich $f < \SI{400}{Hz}$ und $f > \SI{6}{kHz}$ ist ein Anstieg der Hörschwelle zu verzeichnen. 
+
+\subsubsection{Einfluss von Störquelle}
+
+\begin{figure}[htbp]
+	\centering
+		\includegraphics[width=1.00\textwidth]{../Bilder/detail_audio_atten_hl.png}
+	\caption{Audiogramm mit Störgrauschen verschiedener Schallintensität. }
+	\label{fig:detail_audio_atten_hl}
+\end{figure}
+
+
+Zum Abschluss dieser Versuchsreihe wird der Einfluss einer Störquelle auf die Hörschwelle des Probanden untersucht. Es wird über einen zweiten Funktionsgenerator ein \textit{White-Noise} mit einer Intensität von $\SI{15}{dB-SPL}$ (bzw. $\SI{30}{dB-SPL}$) auf das Tonsignal gegeben und erneut ein Audiogramm aufgezeichnet, das ebenfalls nach Eq. \ref{eq:umrechnung_V-HL} umgewandelt wird. Es wurden allerdings weniger Test-Frequenzen als im vorherigen Versuchsteil verwendet und es wurde nur das linke Ohr getestet. Das Ergebnis ist in Abb. \ref{fig:detail_audio_atten_hl} zu sehen. \\
+Bei geringem Rauscheinfluss von nur $\SI{15}{dB-SPL}$ verändert sich das Audiogramm von Proband 2 nur minimal, sodass sich die Hörschwelle kaum verndert. Für das lautere Rauschen von $\SI{30}{dB-SPL}$ ist allerdings zu erkennen, dass eine höhere Signallautstärke vonnöten ist, um das eigentliche Signal vom Rauschen zu trennen und den Ton wahr zu nehmen. Die Audiogrammkurve verschiebt sich also nach oben.  
+
+\section{Fazit}
+
+In dieser Versuchsreihe im Rahmen des Praktikums zur Einführung der medizinischen Physik wurden Audiogramme von verschiedenen Probanden mit verschiedenen Messaufbauten aufgenommen und daraufhin erfolgreich miteinander verglichen. Es konnten bekannte Ergebnisse im Rahmen der zur Verfügung gestellten Aufbauten rekonstruiert werden und der Einfluss von Rauschen auf die Hörwahrnehmung untersucht werden. 

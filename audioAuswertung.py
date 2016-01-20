@@ -69,8 +69,11 @@ fig2, ax2 = plt.subplots(2, sharex=True)
 
 for i in range(0, len(col_names)-1):
     ax2[i/2].set_title(titles[i/2])
-    ax2[i/2].plot(aut_audio[0], aut_audio[i+1], label=col_names[i+1], color=colors[i], marker=markers[i])
 
+    if i/2 == 0:
+        ax2[i/2].plot(aut_audio[0], aut_audio[i+1], label=col_names[i+1], color=colors[i], marker=markers[i])
+    else:
+        ax2[i/2].plot(aut_audio[0][0:-1], aut_audio[i+1][0:-1], label=col_names[i+1], color=colors[i], marker=markers[i])
     ax2[i/2].set_xscale('log')
 
     ax2[i/2].grid(b=True, which="major")
